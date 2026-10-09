@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 09bbc2429c1957a448f2f64a46abd72c
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _LinearWipeLUTTexture: {fileID: 2800000, guid: 29b34f744a8f0a44db91610f8252eead,
+      type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 396104
+  packageName: Linear Wipe VFX - HDRP
+  packageVersion: 1.0
+  assetPath: Assets/Vefects/Linear Wipe VFX HDRP/VFX/Shaders/SH_Vefects_HDRP_VFX_Opaque_Dither_Linear_Wipe_01.shader
+  uploadId: 975032

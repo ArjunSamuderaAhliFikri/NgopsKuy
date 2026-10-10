@@ -1,7 +1,21 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CafeManager : MonoBehaviour
 {
+    // Initial Data Dictionary
+    private Dictionary<string, int> initialIngredients =
+        new Dictionary<string, int>()
+        {
+            {"Kopi Kapal Api", 10},
+            {"Tea Box", 8},
+            {"Sugar Sachet", 12},
+            {"Milk", 4},
+            {"Mineral Water", 14}
+        };
+
+    private Dictionary<string, int> playerInventory;
+
     [Header("Mug Component")]
     public GameObject mugPrefab;
     public Transform onTheTray;
@@ -12,12 +26,44 @@ public class CafeManager : MonoBehaviour
 
     public bool thereIsMugOnTray = true;
 
+    void Start()
+    {
+        playerInventory = new Dictionary<string, int>(initialIngredients);
+
+        Debug.Log("Initial Data Dictionary Is Here :");
+
+        foreach (KeyValuePair<string, int> item in playerInventory)
+        {
+            Debug.Log(item.Key + ": " + item.Value);
+        }
+    }
+
+    public bool UseIngredient(string ingredientName, int amount)
+    {
+        if (!playerInventory.ContainsKey(ingredientName))
+        {
+            Debug.Log("Bahan : " + ingredientName + " Tidak Tersedia! Silahkan Untuk Membeli Bahan " + ingredientName + " di Gerai!");
+            return false;
+        }
+
+        if (playerInventory[ingredientName] < amount)
+        {
+            Debug.Log("Bahan " + ingredientName + " Tidak Cukup!");
+            return false;
+        }
+
+        playerInventory[ingredientName] -= amount;
+        Debug.Log("Bahan " + ingredientName + " Tersisa : " + playerInventory[ingredientName]);
+
+        return true;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player"))
             return;
 
-        Debug.Log("=== PLAYER MASUK CAFE ===");
+        Debug.Log("PLAYER MASUK CAFE");
 
         playerInsideCafe = true;
     }
